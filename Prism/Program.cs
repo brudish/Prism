@@ -14,6 +14,7 @@ namespace Prism
         [STAThread]
         static void Main()
         {
+            //Initial test push
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
