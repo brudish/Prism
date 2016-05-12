@@ -79,6 +79,20 @@
   <ItemGroup>
     <Folder Include="Data Objects\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Old Javascript\Abacus.js" />
+    <Content Include="Old Javascript\Controller.js" />
+    <Content Include="Old Javascript\Parser.js" />
+    <Content Include="Old Javascript\Output.js" />
+    <Content Include="Old Javascript\Events.js" />
+    <Content Include="Old Javascript\Priority.js" />
+    <Content Include="Old Javascript\Caster.js" />
+    <Content Include="Old Javascript\Talents.js" />
+    <Content Include="Old Javascript\Targets.js" />
+    <Content Include="Old Javascript\Timers.js" />
+    <Content Include="Old Javascript\Magic.js" />
+    <Content Include="Old Javascript\Main.js" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
