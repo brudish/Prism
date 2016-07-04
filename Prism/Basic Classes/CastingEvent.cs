@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Prism.Basic_Classes
 {
-    public class CastEvent
+    public class CastingEvent
     {
         private string _name;
         public string Name
@@ -22,8 +22,8 @@ namespace Prism.Basic_Classes
             }
         }
 
-        private int _fire;
-        public int Fire
+        private decimal _fire;
+        public decimal Fire
         {
             get
             {
@@ -64,8 +64,8 @@ namespace Prism.Basic_Classes
             }
         }
 
-        private int _timestamp;
-        public int Timestamp
+        private decimal _timestamp;
+        public decimal Timestamp
         {
             get
             {
@@ -92,8 +92,8 @@ namespace Prism.Basic_Classes
             }
         }
 
-        private int _value;
-        public int Value
+        private decimal _value;
+        public decimal Value
         {
             get
             {

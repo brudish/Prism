@@ -8,26 +8,26 @@ namespace Prism.Basic_Classes
 {
     public class Events
     {
-        private List<CastEvent> events;
+        private List<CastingEvent> events;
 
         private void CycleTimers()
         {
-            int time = GetNextTime();
+            decimal time = GetNextTime();
 
-            //Timers.cycleTimers(time);
+            //Timers.CycleActiveCooldowns(time);
             CycleEventTimers(time);
         }
 
-        private int GetNextTime()
+        private decimal GetNextTime()
         {
-            if (events.Length > 1)
+            if (events.Count > 1)
             {
                 return events[1].Fire - events[0].Fire;
             }
             return 0;
         }
 
-        private void CycleEventTimers(int time)
+        private void CycleEventTimers(decimal time)
         {
             for (var i = 0; i < events.Count; i++)
             {
@@ -42,28 +42,18 @@ namespace Prism.Basic_Classes
 
         private void RemoveEffectFromTarget(Target target, string effect)
         {
-            for (var i = target.Effects.Count - 1; i >= 0; i--)
+            if (target.Effects.Exists(x => x.Name == effect))
             {
-                if (target.Effects[effect] != null)
-                {
-                    target.Effects.Remove(effect);
-                    RemoveTargetEventsByType(target, effect);
-                }
+                Cooldown activeEffect = target.Effects.Find(x => x.Name == effect);
+                target.Effects.Remove(activeEffect);
+                RemoveTargetEventsByType(target, effect);
             }
         }
 
         private void RemoveTargetEventsByType(Target target, string effect)
         {
-            for (var i = events.Count - 1; i >= 0; i--)
-            {
-                if (events[i].Target == target.Name)
-                {
-                    if (events[i].Name == effect)
-                    {
-                        events.RemoveAt(i);
-                    }
-                }
-            }
+            CastingEvent thisEvent = events.Find(x => x.Target.Equals(target) && x.Name == effect);
+            events.Remove(thisEvent);
         }
 
         public bool HasEventByName(string name)
@@ -78,34 +68,14 @@ namespace Prism.Basic_Classes
             return false;
         }
 
-        public List<CastEvent> GetEventsByName(string name)
+        public List<CastingEvent> GetEventsByName(string name)
         {
-            List<CastEvent> eventList = new List<CastEvent>();
-
-            for (var i = 0; i < events.Count; i++)
-            {
-                if (events[i].Name == name)
-                {
-                    eventList.Add(events[i]);
-                }
-            }
-
-            return eventList;
+            return events.FindAll(x => x.Name == name);
         }
 
-        public List<CastEvent> GetEventsByTargetAndEffect(Target target, string effect)
+        public List<CastingEvent> GetEventsByTargetAndEffect(Target target, string effect)
         {
-            List<CastEvent> eventList = new List<CastEvent>();
-
-            for (var i = 0; i < events.Count; i++)
-            {
-                if (events[i].Name == effect && events[i].Target == target.Name)
-                {
-                    eventList.Add(events[i]);
-                }
-            }
-
-            return eventList;
+            return events.FindAll(x => x.Target.Equals(target) && x.Name == effect);
         }
 
         public void PandemicExtend(string name, int value)
@@ -145,26 +115,28 @@ namespace Prism.Basic_Classes
 
         public void OverwriteTargetEffect(Target target, Spell spell)
         {
-            target.Effects.Remove(spell.Name);
+            Cooldown activeEffect = target.Effects.Find(x => x.Name == spell.Name);
+            target.Effects.Remove(activeEffect);
             if (spell.Atones)
             {
-                target.Effects.Remove("Atonement");
+                Cooldown atonement = target.Effects.Find(x => x.Name == "Atonement");
+                target.Effects.Remove(atonement);
             }
         }
 
-        public void AddImmediateEvent(CastEvent eventObj)
+        public void AddImmediateEvent(CastingEvent eventObj)
         {
             events.Insert(0, eventObj);
         }
 
-        public void AddEvent(CastEvent eventObj)
+        public void AddEvent(CastingEvent eventObj)
         {
             events.Add(eventObj);
         }
 
         public void SortEvents()
         {
-            events.Sort((CastEvent a, CastEvent b) => {
+            events.Sort((CastingEvent a, CastingEvent b) => {
                 if (a.Timestamp < b.Timestamp)
                 {
                     return -1;

@@ -21,14 +21,50 @@ namespace Prism.Basic_Classes
                 _name = value;
             }
         }
+        public string TargetType
+        {
+            get
+            {
+                return _targetType;
+            }
+        }
 
-        public Dictionary<string, int?> Effects;
+        private string _targetType;
 
-        private int _amount;
+        public List<Cooldown> Effects;
+
+        private decimal _amount = 0;
+
+        public Target(int num, string targetType)
+        {
+            _name = String.Format("target{0}", num);
+            Effects = new List<Cooldown>();
+            _targetType = targetType;
+        }
 
         public void AddSpellAmount(int value)
         {
             _amount += value;
+        }
+
+        public decimal GetAmount()
+        {
+            return _amount;
+        }
+
+        public void AffectTarget(string name, Cooldown effect)
+        {
+            Effects.Add(effect);
+        }
+
+        public bool HasEffect(Cooldown effect)
+        {
+            return Effects.Find(x => x.Name == effect.Name) != null;
+        }
+
+        internal void CycleEffects(decimal time)
+        {
+            Timers.Cycle(ref Effects, time);
         }
     }
 }

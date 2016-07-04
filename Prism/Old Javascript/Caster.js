@@ -92,9 +92,9 @@ var Caster = function () {
         isCasting: function () {
             return casting;
         },
-        completeCast: function () {
-            casting = false;
-        },
+        //completeCast: function () {
+        //    casting = false;
+        //},
         //--PARSER
 
         //TALENTS

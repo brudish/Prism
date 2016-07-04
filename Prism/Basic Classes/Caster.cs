@@ -13,5 +13,9 @@ namespace Prism.Basic_Classes
         private int _manaSpent = 0;
         private Boolean casting = false;
 
+        public void CompleteCast()
+        {
+            casting = false;
+        }
     }
 }

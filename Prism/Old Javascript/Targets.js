@@ -1,64 +1,64 @@
 ﻿var Targets = function () {
-    var allies = {};
-    var enemies = {};
-    var aCount = 0;
-    var eCount = 0;
+    //var allies = {};
+    //var enemies = {};
+    //var aCount = 0;
+    //var eCount = 0;
 
-    function setTargets() {
-        var allyCount = PrismSheet.getRange("B1").getValue();
-        var enemyCount = PrismSheet.getRange("B2").getValue();
-        aCount = allyCount;
-        eCount = enemyCount;
-        for (var i = 0; i < allyCount; i++) {
-            var allyName = "ally" + i;
-            allies[allyName] = {
-                "Name": allyName,
-                "Effects": [],
-                "Amount": 0
-            };
-        }
-        for (var j = 0; j < enemyCount; j++) {
-            var enemyName = "enemy" + j;
-            enemies[enemyName] = {
-                "Name": enemyName,
-                "Effects": [],
-                "Amount": 0
-            };
-        }
-    };
+    //function setTargets() {
+    //    var allyCount = PrismSheet.getRange("B1").getValue();
+    //    var enemyCount = PrismSheet.getRange("B2").getValue();
+    //    aCount = allyCount;
+    //    eCount = enemyCount;
+    //    for (var i = 0; i < allyCount; i++) {
+    //        var allyName = "ally" + i;
+    //        allies[allyName] = {
+    //            "Name": allyName,
+    //            "Effects": [],
+    //            "Amount": 0
+    //        };
+    //    }
+    //    for (var j = 0; j < enemyCount; j++) {
+    //        var enemyName = "enemy" + j;
+    //        enemies[enemyName] = {
+    //            "Name": enemyName,
+    //            "Effects": [],
+    //            "Amount": 0
+    //        };
+    //    }
+    //};
 
     return {
-        initTargets: function () {
-            setTargets();
-        },
-        getAllyByName: function (name) {
-            return allies[name];
-        },
-        getAllies: function () {
-            return allies;
-        },
-        getAllyCount: function () {
-            return aCount;
-        },
-        getHealingByName: function (name) {
-            var ally = allies[name];
-            var amount = Math.round(ally.Amount * 100) / 100;
-            return amount;
-        },
-        getEnemyByName: function (name) {
-            return enemies[name]
-        },
-        getEnemies: function () {
-            return enemies;
-        },
-        getEnemyCount: function () {
-            return eCount;
-        },
-        getDamageByName: function (name) {
-            var enemy = enemies[name];
-            var amount = Math.round(enemy.Amount * 100) / 100;
-            return amount;
-        },
+        //initTargets: function () {
+        //    setTargets();
+        //},
+        //getAllyByName: function (name) {
+        //    return allies[name];
+        //},
+        //getAllies: function () {
+        //    return allies;
+        //},
+        //getAllyCount: function () {
+        //    return aCount;
+        //},
+        //getHealingByName: function (name) {
+        //    var ally = allies[name];
+        //    var amount = Math.round(ally.Amount * 100) / 100;
+        //    return amount;
+        //},
+        //getEnemyByName: function (name) {
+        //    return enemies[name]
+        //},
+        //getEnemies: function () {
+        //    return enemies;
+        //},
+        //getEnemyCount: function () {
+        //    return eCount;
+        //},
+        //getDamageByName: function (name) {
+        //    var enemy = enemies[name];
+        //    var amount = Math.round(enemy.Amount * 100) / 100;
+        //    return amount;
+        //},
         //Returns an array of ally objects
         getAtoned: function () {
             var atoned = [];
@@ -126,30 +126,30 @@
             }
             return targetArray;
         },
-        affectTarget: function (targetName, effect) {
-            if (targetName.indexOf("enemy") === 0) {
-                enemies[targetName].Effects.push(effect);
-            }
-            else if (targetName.indexOf("ally") === 0) {
-                allies[targetName].Effects.push(effect);
-            }
-        },
-        addValue: function (targetName, value) {
-            if (targetName.indexOf("enemy") === 0) {
-                enemies[targetName].Amount += value;
-            }
-            else if (targetName.indexOf("ally") === 0) {
-                allies[targetName].Amount += value;
-            }
-        },
-        hasTargetEffect: function (target, effect) {
-            for (var i = target.Effects.length - 1; i >= 0; i--) {
-                if (target.Effects[i][0] === effect) {
-                    return true;
-                }
-            }
-            return false;
-        },
+        //affectTarget: function (targetName, effect) {
+        //    if (targetName.indexOf("enemy") === 0) {
+        //        enemies[targetName].Effects.push(effect);
+        //    }
+        //    else if (targetName.indexOf("ally") === 0) {
+        //        allies[targetName].Effects.push(effect);
+        //    }
+        //},
+        //addValue: function (targetName, value) {
+        //    if (targetName.indexOf("enemy") === 0) {
+        //        enemies[targetName].Amount += value;
+        //    }
+        //    else if (targetName.indexOf("ally") === 0) {
+        //        allies[targetName].Amount += value;
+        //    }
+        //},
+        //hasTargetEffect: function (target, effect) {
+        //    for (var i = target.Effects.length - 1; i >= 0; i--) {
+        //        if (target.Effects[i][0] === effect) {
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //},
         countTargetsWithEffect: function (effect) {
             var count = 0;
             for (var enemy in enemies) {
