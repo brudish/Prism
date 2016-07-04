@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Basic Classes\Caster.cs" />
+    <Compile Include="Basic Classes\CastEvent.cs" />
+    <Compile Include="Basic Classes\Effect.cs" />
+    <Compile Include="Basic Classes\Events.cs" />
+    <Compile Include="Basic Classes\Spell.cs" />
+    <Compile Include="Basic Classes\Target.cs" />
     <Compile Include="UI\Form1.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -5,10 +5,6 @@ var currentRow = 2;
 //Organize some of the messier functions to be in order at least
 
 function Main() {
-    PrismSheet.getRange("F:F").setBackground("white");
-    PrismSheet.getRange("E:M").setFontColor("black");
-    PrismSheet.getRange("E:M").setValue("");
-    PrismSheet.getRange("E1:M1").setValues([["Time", "Event", "Value", "Target", "Total dmg", "DPS", "Total heals", "HPS", "Mana"]]);
     Caster.InitCaster();
     Targets.initTargets();
     Talents.assignClassTalents();

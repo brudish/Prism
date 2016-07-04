@@ -27,6 +27,7 @@
                         innerArray[i][1] -= time;
                     }
                     if (innerArray[i][1] <= 0) {
+                        //Splice is used like this to easily cut the first item off, because it returns a new array
                         innerArray.splice(i, 1);
                     }
                 }
